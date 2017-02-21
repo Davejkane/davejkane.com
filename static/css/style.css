@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #4D4143;
+}
+
+body {
+	
+}
+
+.main {
+	background-image: url("../img/ignasi.png");
+}
+
+header {
+	padding: 80px 0 20px 0;
+	margin: auto;
+	text-align: center;
+}
+
+header h1 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+nav li {
+	padding: 10px 20px 10px 20px;
+	border-left: solid 2px #A05B3E;
+	font-family: 'Montserrat', sans-serif;
+}
+
+nav li:first-child {
+	border-left: none;
+}
+
+#face {
+	background: url("../img/face.jpg");
+	border-radius: 200px;
+	height: 200px;
+	width: 200px;
+	background-size: 200px;
+	background-position: right;
+}
