@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Dave J Kane - Personal Website</title>
+    <title>Dave J Kane - {{ .Title }}</title>
 
     <!-- Bootstrap -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -24,7 +24,7 @@
     <nav>
         <ul class="nav nav-pills">
             <li>About &amp; Contact</li>
-            <a href="/blog"><li>Blog</li></a>
+            <li>Home</li>
             <li>Projects &amp; Toys</li>
             <li><i class="fa fa-twitter fa-lg"></i></li>
             <li><i class="fa fa-github fa-lg"></i></li>
@@ -32,11 +32,11 @@
         </ul>
     </nav>
     <div id="main">
-        <header>
-    		<img id="face">
-    		<h1>Dave Kane</h1>
-    		<h2>Personal Website, Portfolio and Blog</h2>
-    	</header>
+        <header>        
+            <h1>{{ .Title }}</h2>
+            <h3>{{ .Date }}</h4>
+        </header>
+        {{ .BodyHTML }}
     </div>
 
 	
@@ -44,6 +44,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
   </body>
 </html>
