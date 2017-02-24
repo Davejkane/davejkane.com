@@ -2,7 +2,7 @@
 {{ template "navTemplate" . }}
     <div id="main">
         {{ range .BlogPostList }}
-        <div class="index"><a href="localhost:3000/{{ .Slug}}">
+        <div class="index"><a href="/{{ .Slug}}">
             <h2>{{ .Title }}</h2>
             <h3>{{ .Subtitle}}</h3>
             <h4>{{ .Date }}</h4>
