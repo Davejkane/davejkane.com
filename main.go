@@ -1,30 +1,32 @@
 package main
 
 import (
-	//"github.com/russross/blackfriday"
-	"fmt"
 	"gopkg.in/gin-gonic/gin.v1"
+	"net/http"
 )
+
+type IndexPage struct {
+	PageTitle string
+}
 
 func main() {
 
-	//fmt.Print(BlogPosts)
-	d3 := BlogPosts[1]
-	fmt.Println("Title:")
-	fmt.Println(d3.Title)
-	fmt.Println("Subitle:")
-	fmt.Println(d3.Subtitle)
-	fmt.Println("Date:")
-	fmt.Println(d3.Date)
-	fmt.Println("BodyString:")
-	fmt.Print(d3.BodyString)
-	fmt.Println("")
 	router := gin.Default()
-	router.StaticFile("/", "index.html")
+
 	router.Static("/static", "./static")
 
 	router.LoadHTMLGlob("templates/*")
+
+	router.GET("/", indexHandler)
 	router.GET("/blog", blogIndexHandler)
-	router.GET("blog/:post", blogPostHandler)
+	router.GET("/blog/:post", blogPostHandler)
+	router.GET("/about", aboutHandler)
+
 	router.Run(":3000")
+
+}
+
+func indexHandler(c *gin.Context) {
+	index := IndexPage{PageTitle: "Dave J Kane - Personal Website"}
+	c.HTML(http.StatusOK, "index.tmpl", index)
 }

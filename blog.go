@@ -13,12 +13,18 @@ import (
 )
 
 type BlogPost struct {
+	PageTitle  string
 	Slug       string
 	Title      string
 	Subtitle   string
 	Date       string
 	BodyString string
 	BodyHTML   template.HTML
+}
+
+type BlogIndex struct {
+	BlogPostList BlogPostList
+	PageTitle    string
 }
 
 type BlogPostList []BlogPost
@@ -68,12 +74,13 @@ func parseBlogPost(filename string) BlogPost {
 		bp.BodyString += scanner.Text() + "\n"
 	}
 	bp.BodyHTML = template.HTML(blackfriday.MarkdownBasic([]byte(bp.BodyString)))
+	bp.PageTitle = "Dave J Kane " + bp.Title
 	return bp
 }
 
 //Takes a folder and parses all of the files using parseBlogPost(). Folder should only contain .md files.
 //It returns a map of url slugs to BlogPost structs to be stored in memory on startup for quick rendering.
-func parseAllBlogPosts(directory string) []BlogPost {
+func parseAllBlogPosts(directory string) BlogPostList {
 	var blogPosts BlogPostList
 	filepath.Walk(directory, func(path string, f os.FileInfo, err error) error {
 		bp := parseBlogPost(path)
@@ -85,7 +92,8 @@ func parseAllBlogPosts(directory string) []BlogPost {
 }
 
 func blogIndexHandler(c *gin.Context) {
-	c.HTML(http.StatusOK, "blogindex.tmpl", BlogPosts)
+	bi := BlogIndex{PageTitle: "Dave J Kane - Blog", BlogPostList: BlogPosts}
+	c.HTML(http.StatusOK, "blogindex.tmpl", bi)
 }
 
 func blogPostHandler(c *gin.Context) {
